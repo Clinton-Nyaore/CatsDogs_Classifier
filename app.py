@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, session
 import os
 from werkzeug.utils import secure_filename
 from predict import load_model, process_image, prediction
- 
+import logging
+
 #*** Backend operation
  
 # WSGI Application
@@ -18,7 +19,11 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__, template_folder='templates', static_folder='static')
 # Configure upload folder for Flask application
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
- 
+
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
 # Define secret key to enable session
 app.secret_key = 'This is your secret key to utilize session'
  
