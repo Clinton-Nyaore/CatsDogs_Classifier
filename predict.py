@@ -6,7 +6,7 @@ import torchvision.transforms as T
 
 # Lets load our saved model
 def load_model():
-    checkpoint = torch.load('alexnetcatsdogs.pth')
+    checkpoint = torch.load('new_alexnetcatsdogs.pth')
     model = checkpoint['model']
     model.load_state_dict(checkpoint['state_dict'], strict=False)
     model.avgpool = nn.AdaptiveAvgPool2d((6, 6))
